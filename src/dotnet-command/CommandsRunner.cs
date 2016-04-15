@@ -35,8 +35,6 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                     args.BuildBasePath,
                     _projectContext.ProjectDirectory);
                     
-            Reporter.Verbose.WriteLine("Dir =" +_projectContext.ProjectDirectory);
-            
             // TODO use actualy parser
             // var commandArgs = CommandGrammar.Process(commandName, v => null, false);
             var commandArgs = commandName.Split(' ');
@@ -53,6 +51,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
             try
             {
                 Directory.SetCurrentDirectory(_projectContext.ProjectDirectory);
+                Reporter.Verbose.WriteLine("Working directory =" +_projectContext.ProjectDirectory);
                 
                 return command
                     .ForwardStdErr()

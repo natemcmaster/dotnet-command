@@ -40,8 +40,20 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                 }
 
                 var projectContexts = CreateProjectContexts(parameters.ProjectPath);
-
-                var projectContext = projectContexts.First();
+                
+                
+                var projectContext =  parameters.Framework != null
+                     ? projectContexts.First(p => p.TargetFramework == parameters.Framework)
+                     : projectContexts.First(); // TODO select netcoreapp1.0 if possible
+                
+                if (projectContext == null)
+                {
+                    Reporter.Error.WriteLine($"Project does not support framework {projectContext.TargetFramework.GetShortFolderName()}");
+                    return 1;    
+                }
+                
+                Reporter.Verbose.WriteLine($"Running tool on {projectContext.TargetFramework.GetShortFolderName()}");
+                
                 // TODO implement build
                 var runner = new CommandRunner(projectContext);
 
