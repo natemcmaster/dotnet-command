@@ -5,7 +5,7 @@ using Microsoft.DotNet.ProjectModel;
 using Newtonsoft.Json;
 using System.Linq;
 
-namespace TestCommand
+namespace BananaLauncher.Tool
 {
     class Program
     {
@@ -31,8 +31,10 @@ namespace TestCommand
                 Console.WriteLine(" type = " + type.FullName);
             }
             
-            var bananaSql = userAssembly.DefinedTypes.Single(t => t.FullName.Contains("BananaSql"));
-            Activator.CreateInstance(bananaSql.AsType(),new[]{ args[0] });
+            Console.WriteLine("Activating all instances of types that contain 'Banana' in their name or namespace'. Constructor should have string[] as only param");
+            
+            var bananaSql = userAssembly.DefinedTypes.Where(t => t.FullName.Contains("Banana"))
+                .Select(t => Activator.CreateInstance(t.AsType(), new []{ args })).ToList();
         }
     }
 }

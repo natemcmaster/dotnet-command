@@ -8,25 +8,16 @@
     "dependencies": {
         "Microsoft.DotNet.Cli.Utils": "1.0.0-*",
         "Microsoft.Extensions.CommandLineUtils": "1.0.0-*",
-        "Microsoft.Extensions.DependencyModel": "1.0.0-*",
-        "Newtonsoft.Json": "8.0.3",
-
-        "System.Data.SqlClient": "4.1.0-*",
-        
+        "Microsoft.Extensions.DependencyModel": "1.0.0-*",        
         "Microsoft.NETCore.App": {
             "type": "platform",
             "version": "1.0.0-*"
-        },
-        "dotnet-command-test": {"target": "package", "version": "1.0.0-*"}
+        }
     },
     
     "frameworks": {
-        "netcoreapp1.0": {
+        "netstandardapp1.5": {
             "imports": ["portable-net452+win81"]
          }
-    },
-    
-    "commands": {
-        "t": "dotnet-command-test"
     }
 }

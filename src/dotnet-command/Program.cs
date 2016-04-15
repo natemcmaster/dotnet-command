@@ -6,9 +6,9 @@ using System.Linq;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.DotNet.ProjectModel;
 
-namespace Microsoft.DotNet.Tools.Exec
+namespace Microsoft.DotNet.Tools.ProjectCommand
 {
-    public class ExecCommand
+    public class ProjectCommand
     {
         public static int Main(string[] args)
         {
@@ -42,7 +42,7 @@ namespace Microsoft.DotNet.Tools.Exec
                 var projectContexts = CreateProjectContexts(parameters.ProjectPath);
 
                 var projectContext = projectContexts.First();
-
+                // TODO implement build
                 var runner = new CommandRunner(projectContext);
 
                 return runner.Run(parameters);

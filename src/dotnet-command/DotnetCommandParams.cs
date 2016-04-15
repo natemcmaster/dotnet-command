@@ -8,7 +8,7 @@ using Microsoft.DotNet.Cli.Utils;
 using NuGet.Frameworks;
 using static System.Int32;
 
-namespace Microsoft.DotNet.Tools.Exec
+namespace Microsoft.DotNet.Tools.ProjectCommand
 {
     public class DotnetCommandParams
     {

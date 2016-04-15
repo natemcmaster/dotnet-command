@@ -1,0 +1,32 @@
+{
+    "compilationOptions": {
+        "emitEntryPoint": true
+    },
+    
+    "dependencies": {
+        "BananaLauncher.Tool": {
+            "version": "1.0.0-*",
+            "type":"build"
+        },
+        "Microsoft.NETCore.App": {
+            "type": "platform",
+            "version": "1.0.0-*"
+        },
+        "Microsoft.Data.Sqlite": "1.0.0-*"
+    },
+    
+    "frameworks": {
+        "netcoreapp1.0": {  "imports": ["portable-net452+win81"] }
+    },
+    
+    "commands": {
+        "banana": "BananaLauncher.Tool"
+    },
+    
+    "tools": {
+        "dotnet-command": {
+            "version": "1.0.0-*",
+            "imports": ["portable-net452+win81"]
+        }
+    }
+}

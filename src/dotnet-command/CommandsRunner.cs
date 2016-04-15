@@ -6,7 +6,7 @@ using Microsoft.DotNet.ProjectModel;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
-namespace Microsoft.DotNet.Tools.Exec
+namespace Microsoft.DotNet.Tools.ProjectCommand
 {
     public class CommandRunner
     {
