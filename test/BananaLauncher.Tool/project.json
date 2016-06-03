@@ -1,23 +1,21 @@
 {
-    "version": "1.0.0-*",
-    "compilationOptions": {
-        "emitEntryPoint": true
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "Microsoft.DotNet.ProjectModel": "1.0.0-rc2-002702",
+    "Newtonsoft.Json": "8.0.4-beta1"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0-*"
+        }
+      }
     },
-    "dependencies": {
-        "Microsoft.DotNet.ProjectModel": "1.0.0-*"
-    },
-    "frameworks": {
-        "netcoreapp1.0": {
-            "imports": [
-                "portable-net452+win81"
-            ],
-            "dependencies": {
-                "Microsoft.NETCore.App": {
-                    "type": "platform",
-                    "version": "1.0.0-*"
-                }
-            }
-        },
-        "net451": {}
-    }
+    "net451": {}
+  }
 }

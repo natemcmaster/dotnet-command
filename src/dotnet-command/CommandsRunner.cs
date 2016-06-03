@@ -10,7 +10,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
 {
     public class CommandRunner
     {
-        private readonly IDictionary<string,string> _commands;
+        private readonly IDictionary<string, string> _commands;
         private readonly ProjectContext _projectContext;
         
         public CommandRunner(ProjectContext project)
@@ -51,7 +51,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
             try
             {
                 Directory.SetCurrentDirectory(_projectContext.ProjectDirectory);
-                Reporter.Verbose.WriteLine("Working directory =" +_projectContext.ProjectDirectory);
+                Reporter.Verbose.WriteLine("Working directory = " +_projectContext.ProjectDirectory);
                 
                 return command
                     .ForwardStdErr()

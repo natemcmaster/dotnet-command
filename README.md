@@ -9,7 +9,7 @@ dotnet-command
 
 ```json
 {
-    "compilationOptions": {
+    "buildOptions": {
         "emitEntryPoint": true
     },
     
@@ -20,13 +20,13 @@ dotnet-command
         },
         "Microsoft.NETCore.App": {
             "type": "platform",
-            "version": "1.0.0-*"
+            "version": "1.0.0-rc2-*"
         },
-        "Microsoft.Data.Sqlite": "1.0.0-*"
+        "Microsoft.Data.Sqlite": "1.0.0-rc2-final"
     },
     
     "frameworks": {
-        "netcoreapp1.0": {  "imports": ["portable-net452+win81"] }
+        "netcoreapp1.0": { }
     },
     
     "commands": {
@@ -35,10 +35,7 @@ dotnet-command
     },
     
     "tools": {
-        "dotnet-command": {
-            "version": "1.0.0-*",
-            "imports": ["portable-net452+win81"]
-        }
+        "dotnet-command": "1.0.0-rc2-final"
     }
 }
 ```

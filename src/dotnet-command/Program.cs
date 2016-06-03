@@ -15,12 +15,12 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
             HandleVerboseOption(ref args);
             DebugHelper.HandleDebugSwitch(ref args);
              
-            var parameters = new DotnetCommandParams();
-
-            parameters.Parse(args);
-            
             try
             {
+                var parameters = new DotnetCommandParams();
+
+                parameters.Parse(args);
+                
                 if (parameters.Help)
                 {
                     return 0;
@@ -52,17 +52,16 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                     return 1;    
                 }
                 
-                Reporter.Verbose.WriteLine($"Running tool on {projectContext.TargetFramework.GetShortFolderName()}");
+                Reporter.Verbose.WriteLine($"Using framework {projectContext.TargetFramework.GetShortFolderName()}");
                 
-                // TODO implement build
+                // TODO implement auto build
                 var runner = new CommandRunner(projectContext);
 
                 return runner.Run(parameters);
             }
             catch (Exception ex)
             {
-                // TestHostTracing.Source.TraceEvent(TraceEventType.Error, 0, ex.ToString());
-                Reporter.Error.WriteLine(ex.Message);
+                Reporter.Error.WriteLine(ex.Message.Bold().Red());
                 return -1;
             }
         }
@@ -93,21 +92,8 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                 parentProcess.EnableRaisingEvents = true;
                 parentProcess.Exited += (sender, eventArgs) =>
                 {
-                    // TestHostTracing.Source.TraceEvent(
-                    //     TraceEventType.Information,
-                    //     0,
-                    //     "Killing the current process as parent process has exited.");
-
                     Process.GetCurrentProcess().Kill();
                 };
-            }
-            else
-            {
-                // TestHostTracing.Source.TraceEvent(
-                //     TraceEventType.Information,
-                //     0,
-                //     "Failed to register for parent process's exit event. " +
-                //     $"Parent process with id '{id}' was not found.");
             }
         }
         
