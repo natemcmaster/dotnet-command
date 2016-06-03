@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Microsoft.Extensions.CommandLineUtils;
 using Microsoft.DotNet.Cli.Utils;
 using NuGet.Frameworks;
-using static System.Int32;
 
-namespace Microsoft.DotNet.Tools.ProjectCommand
+namespace DotNet.Cli.ProjectCommands
 {
     public class DotnetCommandParams
     {
@@ -19,7 +16,6 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
         private CommandOption _outputOption;
         private CommandOption _buildBasePath;
         private CommandOption _frameworkOption;
-        private CommandOption _runtimeOption;
         private CommandOption _configurationOption;
         private CommandOption _parentProcessIdOption;
         private CommandOption _projectPath;
@@ -28,8 +24,6 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
         public string Command { get; set; }
 
         public int? ParentProcessId { get; set; }
-
-        public string Runtime { get; set; }
 
         public string Config { get; set; }
 
@@ -43,7 +37,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
 
         public List<string> RemainingArguments { get; set; }
 
-        public bool NoBuild { get; set; }
+        // public bool NoBuild { get; set; }
 
         public bool Help { get; set; }
 
@@ -79,7 +73,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                 {
                     int processId;
 
-                    if (!TryParse(_parentProcessIdOption.Value(), out processId))
+                    if (!int.TryParse(_parentProcessIdOption.Value(), out processId))
                     {
                         throw new InvalidOperationException(
                             $"Invalid process id '{_parentProcessIdOption.Value()}'. Process id must be an integer.");
@@ -96,8 +90,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                 Output = _outputOption.Value();
                 BuildBasePath = _buildBasePath.Value();
                 Config = _configurationOption.Value() ?? Constants.DefaultConfiguration;
-                Runtime = _runtimeOption.Value();
-                NoBuild = _noBuildOption.HasValue();
+                // NoBuild = _noBuildOption.HasValue();
                 Command = _command.Value;
 
                 RemainingArguments = _app.RemainingArguments;
@@ -114,13 +107,17 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
         {
             _helpOption = _app.HelpOption("-?|-h|--help");
 
-            _parentProcessIdOption = _app.Option(
-                "--parentProcessId",
-                "Used by IDEs to specify their process ID. Test will exit if the parent process does.",
-                CommandOptionType.SingleValue);
+            _command = _app.Argument(
+                "<COMMAND> [arguments]",
+                "The command to execute");
+                
             _configurationOption = _app.Option(
                 "-c|--configuration <CONFIGURATION>",
-                "Configuration under which to build",
+                "Configuration under which to run",
+                CommandOptionType.SingleValue);
+            _frameworkOption = _app.Option(
+                "-f|--framework <FRAMEWORK>",
+                "Looks for command binaries for a specific framework",
                 CommandOptionType.SingleValue);
             _outputOption = _app.Option(
                 "-o|--output <OUTPUT_DIR>",
@@ -130,23 +127,16 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                 "-b|--build-base-path <OUTPUT_DIR>",
                 "Directory in which to find temporary outputs",
                 CommandOptionType.SingleValue);
-            _frameworkOption = _app.Option(
-                "-f|--framework <FRAMEWORK>",
-                "Looks for test binaries for a specific framework",
-                CommandOptionType.SingleValue);
-            _runtimeOption = _app.Option(
-                "-r|--runtime <RUNTIME_IDENTIFIER>",
-                "Look for test binaries for a for the specified runtime",
-                CommandOptionType.SingleValue);
-            _noBuildOption =
-                _app.Option("--no-build", "Do not build project before testing", CommandOptionType.NoValue);
+            // _noBuildOption =
+            //     _app.Option("--no-build", "Do not build project before testing", CommandOptionType.NoValue);
             _projectPath = _app.Option(
                 "-p|--project <PROJECT>",
-                "The project to test, defaults to the current directory. Can be a path to a project.json or a project directory.",
+                "The project to execute command on, defaults to the current directory. Can be a path to a project.json or a project directory.",
                 CommandOptionType.SingleValue);
-            _command = _app.Argument(
-                "<COMMAND> [arguments]",
-                "The command to execute");
+            _parentProcessIdOption = _app.Option(
+                "--parentProcessId",
+                "Used by IDEs to specify their process ID. Command will exit if the parent process does.",
+                CommandOptionType.SingleValue);
         }
     }
 }

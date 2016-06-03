@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.DotNet.ProjectModel;
 
-namespace Microsoft.DotNet.Tools.ProjectCommand
+namespace DotNet.Cli.ProjectCommands
 {
     public class ProjectCommand
     {

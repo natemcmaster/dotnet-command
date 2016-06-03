@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +5,7 @@ using Microsoft.DotNet.ProjectModel;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
-namespace Microsoft.DotNet.Tools.ProjectCommand
+namespace DotNet.Cli.ProjectCommands
 {
     public class CommandRunner
     {
@@ -35,9 +34,7 @@ namespace Microsoft.DotNet.Tools.ProjectCommand
                     args.BuildBasePath,
                     _projectContext.ProjectDirectory);
                     
-            // TODO use actualy parser
-            // var commandArgs = CommandGrammar.Process(commandName, v => null, false);
-            var commandArgs = commandName.Split(' ');
+            var commandArgs = CommandGrammar.Process(commandName, v => null, false);
             
             Reporter.Verbose.WriteLine($"Running {commandName} {string.Join(" ", args.RemainingArguments)}");
             
