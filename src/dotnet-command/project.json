@@ -1,5 +1,25 @@
 {
   "version": "1.0.0-alpha-*",
+  "description": "Extension for .NET Core CLI to run assemblies as commands on a project",
+  "authors": [
+    "Nate McMaster"
+  ],
+  "copyright": "MIT License",
+  "packOptions": {
+    "summary": "This extension for .NET Core CLI will find an assembly in the user build output and launch .NET Core using this assembly as an alternate entrypoint into the user application. This is especially useful for tools that need to load and execute user assemblies.",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/natemcmaster/dotnet-command/"
+    },
+    "tags": [
+      ".NET Core CLI",
+      "commands",
+      "project-json",
+      "dotnet",
+      "dotnet-command"
+    ],
+    "licenseUrl": "https://github.com/natemcmaster/dotnet-command/blob/master/LICENSE.md"
+  },
   "buildOptions": {
     "emitEntryPoint": true,
     "outputName": "dotnet-command"
