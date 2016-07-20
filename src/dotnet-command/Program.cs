@@ -97,7 +97,6 @@ namespace DotNet.Cli.ProjectCommands
             }
         }
         
-        
         private static void HandleVerboseOption(ref string[] args)
         {
             for (int i = 0; i < args.Length; i++)

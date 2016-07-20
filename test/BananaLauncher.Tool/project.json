@@ -4,8 +4,7 @@
     "emitEntryPoint": true
   },
   "dependencies": {
-    "Microsoft.DotNet.ProjectModel": "1.0.0-rc2-002702",
-    "Newtonsoft.Json": "8.0.4-beta1"
+    "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121"
   },
   "frameworks": {
     "netcoreapp1.0": {

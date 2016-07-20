@@ -19,7 +19,7 @@ namespace DotNet.Cli.ProjectCommands
         private CommandOption _configurationOption;
         private CommandOption _parentProcessIdOption;
         private CommandOption _projectPath;
-        private CommandOption _noBuildOption;
+        //private CommandOption _noBuildOption;
         
         public string Command { get; set; }
 
